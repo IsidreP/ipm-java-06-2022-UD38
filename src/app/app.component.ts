@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ArticulosService } from './articulos.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,13 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'unidad37';
 
+  articulos:any = null;
 
+  constructor(private articulosService: ArticulosService) {}
 
+  ngOnInit() {
+    this.articulosService.retornar()
+    .subscribe( result => this.articulos = result)
+  }
 
 }
